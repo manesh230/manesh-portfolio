@@ -1,4 +1,6 @@
-// ======================
+<div class="image-placeholder">
+    <i class="fas fa-user"></i>
+</div>// ======================
 // Mobile Navigation Toggle
 // ======================
 const hamburger = document.getElementById('hamburger');
