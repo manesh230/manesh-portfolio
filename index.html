@@ -349,7 +349,10 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form" action="https://formspree.io/f/xovqqknz" method="POST">
+                <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="669bd487-63b4-44ed-95ee-afeb79095a8a">
+                    <input type="hidden" name="subject" value="New Contact from Portfolio Website">
+                    
                     <div class="form-group">
                         <input type="text" name="name" placeholder="Your Name" required>
                     </div>
@@ -357,7 +360,7 @@
                         <input type="email" name="email" placeholder="Your Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="subject" placeholder="Subject" required>
+                        <input type="text" name="subject_line" placeholder="Subject" required>
                     </div>
                     <div class="form-group">
                         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>

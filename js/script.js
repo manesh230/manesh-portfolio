@@ -146,7 +146,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ======================
-// Contact Form Handling
+// Contact Form Handling with Web3Forms
 // ======================
 const contactForm = document.getElementById('contact-form');
 
@@ -162,23 +162,22 @@ contactForm.addEventListener('submit', async (e) => {
     submitBtn.disabled = true;
     
     try {
-        const response = await fetch(contactForm.action, {
+        const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
+            body: formData
         });
         
-        if (response.ok) {
-            alert('✅ Thank you for your message! I\'ll get back to you soon.');
+        const data = await response.json();
+        
+        if (data.success) {
+            alert('✅ Thank you for your message, ' + formData.get('name') + '! I\'ll get back to you soon at ' + formData.get('email'));
             contactForm.reset();
         } else {
-            alert('❌ Oops! There was a problem sending your message. Please try again or email me directly at maneshharyani@gmail.com');
+            alert('❌ Oops! Something went wrong. Please email me directly at maneshharyani@gmail.com');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('❌ An error occurred. Please try again or email me directly at maneshharyani@gmail.com');
+        alert('❌ Network error. Please email me directly at maneshharyani@gmail.com');
     } finally {
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
