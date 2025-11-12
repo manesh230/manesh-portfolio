@@ -154,7 +154,6 @@ contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData.entries());
     
     // Show loading state
     const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -162,42 +161,28 @@ contactForm.addEventListener('submit', async (e) => {
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
     
-    // Simulate form submission (replace with actual backend call)
-    setTimeout(() => {
-        // Success message
-        alert('Thank you for your message! I\'ll get back to you soon.');
-        contactForm.reset();
-        
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }, 1500);
-    
-    // Example: Send to backend
-    /*
     try {
-        const response = await fetch('/api/contact', {
+        const response = await fetch(contactForm.action, {
             method: 'POST',
+            body: formData,
             headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
+                'Accept': 'application/json'
+            }
         });
         
         if (response.ok) {
-            alert('Message sent successfully!');
+            alert('✅ Thank you for your message! I\'ll get back to you soon.');
             contactForm.reset();
         } else {
-            alert('Failed to send message. Please try again.');
+            alert('❌ Oops! There was a problem sending your message. Please try again or email me directly at maneshharyani@gmail.com');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred. Please try again.');
+        alert('❌ An error occurred. Please try again or email me directly at maneshharyani@gmail.com');
     } finally {
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
     }
-    */
 });
 
 // ======================
